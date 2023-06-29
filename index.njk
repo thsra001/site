@@ -1,0 +1,25 @@
+---
+layout: main.njk
+title: "Thsra001"
+---
+<h2>about me</h2>
+<p>
+Hello, I'm thsra001. I like programming and video games. <br>
+I think that’s all I have to say haha <b>:P</b> 
+</p>
+
+  <h2>games</h2>
+  {% set games = search.pages("type=games")%}
+<ul>
+  {% for game in games %}
+    <a href="{{game.data.url}}"><li>{{game.data.title}}</li></a>
+  {% endfor %}
+</ul>
+
+<h2>blog</h2>
+  {% set posts = search.pages("type=posts")%}
+<ul>
+  {% for post in posts %}
+    <a href="{{post.data.url}}"><li>{{post.data.title}}</li></a>
+  {% endfor %}
+</ul>

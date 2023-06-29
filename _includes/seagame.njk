@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/assets/sea.css" />
+  <script type="importmap">
+    {
+    "imports": {
+     "three": "https://cdn.skypack.dev/three@0.143.0/build/three.module",
+        "three/": "https://cdn.skypack.dev/three@0.143.0/"
+    }
+   }
+  </script>
+  </head>
+  <body>
+   {{ content | safe }}
+  </body>
+</html>

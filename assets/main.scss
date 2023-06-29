@@ -1,0 +1,54 @@
+/* I did this so that the canvas can fit thee window */
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Oxygen', sans-serif;
+}
+body{
+  background-color: #1a1a1a;
+  
+}
+.title{
+  font-size:8vh;
+  margin: 1vh 0 0 0 ;
+  
+  text-align: center;
+  color: rgb(80, 80, 80)
+  
+}
+#bodybox{
+  background-color: white;
+  margin: auto;
+  max-width: 75vw;
+  min-height: 50vmin;
+  padding-left: 5vw;
+  padding-top: 2.5vmin;
+}
+#footer{
+  background-color: rgb(80, 80, 80);
+  margin: auto;
+  max-width: 75vw;
+  height: 5vmin;
+  padding-left: 5vw;
+  padding-top: 2.5vmin;
+  margin-top: 1vmin;
+}
+.lin,h3{
+  font-size: 2.7vh;
+  display: inline;
+}
+p,li{font-size: 2.3vh;}
+h2{font-size: 3.5vh;}
+.nosel{
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard, aka chrome, edge, firefox and opera */
+}
+*:link{
+  text-decoration: none;
+  color: rgb(98, 144, 156);
+}
+*:visited{
+  color: rgb(111, 98, 158);}
