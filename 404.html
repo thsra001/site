@@ -6,7 +6,7 @@
    margin: 0;
    padding: 0;
    }
-   html{
+   body{
    background-color:#002500;
    }
    #tea{
@@ -47,12 +47,15 @@
   <h1 id="fouraig">418</h1>
   <h1 id="gone">Nothing's here, except for a teapot</h1>
   <script>
-    const longtex="You stepped out of the teapot's bounds. the games and jokes you saw around you quickly faded into a peculiar shade of green. It seems that the only way back is through the teapot."
+    const longtex="You stepped out of the teapot's bounds. the games and jokes you saw around you quickly faded into a stale shade of green. It seems that the only way is to go back in the teapot."
 
     setTimeout(function() {
       document.querySelector('#gone').innerText=longtex
     }, 5000);
-
+    
+    setTimeout(function() {
+      document.body.style.backgroundImage="url('/assets3/blue.png')";
+    }, 10000);
   </script>
 </body>
 
