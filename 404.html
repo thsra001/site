@@ -2,24 +2,32 @@
 <html>
 <head>
 <style>
+:root {
+  --MteapotWidth:80vw;
+  --teapotHeight:60vh;
+  --headerSize:20vh;
+  --textSize:5vh;
+  --color:#004500;
+  --bg:#002500;
+}
 * {
    margin: 0;
    padding: 0;
-   }
-   body{
-   background-color:#002500;
-   }
-   #tea{
-      width:106vmin;
-      height:60vh;   
+}
+body{
+  background-color:var(--bg);
+}
+#tea{
+      width:auto;
+      height:var(--teapotHeight);   
        display: block;
      margin-left: auto;
      margin-right: auto;
    filter: brightness(50%);
-   }
-   @media screen and (max-aspect-ratio: 13/9) {
+}
+@media screen and (max-aspect-ratio: 13/9) {
     #tea {
-      width:80vw;
+      width:var(--MteapotWidth);
       height:auto;
     }
    }
@@ -30,11 +38,11 @@
       transform: translate(-50%, 0);
       font-weight: bold;
       text-align:center;
-      color:#004500;
+      color:var(--color);
     }
-    #fouraig{font-size:20vh;}
+    #fouraig{font-size:var(--headerSize);}
     #gone{
-     font-size:5vh;
+     font-size:var(--textSize);
      padding-top:20vh;
     }
 </style>
@@ -47,14 +55,19 @@
   <h1 id="fouraig">418</h1>
   <h1 id="gone">Nothing's here, except for a teapot</h1>
   <script>
-    const longtex="You stepped out of the teapot's bounds. the games and jokes you saw around you quickly faded into a stale shade of green. It seems that the only way is to go back in the teapot."
-
+    var r = document.querySelector(':root');
+    const longtex="You stepped out of the teapot's bounds. the games and jokes you saw around you quickly faded into a stale shade of green. It seems that the only way is to go back in the teapot, please."
+    const longertex="Oh no, nevermind. great. I'm not even going to try to help you now, so congrats! you're lost."
     setTimeout(function() {
       document.querySelector('#gone').innerText=longtex
+      r.style.setProperty('--teapotHeight', '45vh');
+      r.style.setProperty('--MteapotWidth', '60vw');
+      r.style.setProperty('--bg', '#15333D');
     }, 5000);
     
     setTimeout(function() {
       document.body.style.backgroundImage="url('/assets3/blue.png')";
+      document.querySelector('#gone').innerText=longertex
     }, 10000);
   </script>
 </body>
