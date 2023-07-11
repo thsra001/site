@@ -57,17 +57,27 @@ body{
   <script>
     var r = document.querySelector(':root');
     const longtex="You stepped out of the teapot's bounds. the games and jokes you saw around you quickly faded into a stale shade of green. It seems that the only way is to go back in the teapot, please."
-    const longertex="Oh no, nevermind. great. I'm not even going to try to help you now, so congrats! you're lost."
+    const longertex="Oh no, nevermind. great. I'm not even going to try to help you now, so congrats! you're on your own."
+    const longestex="oh, that building over there? It's unfinished, so dont try going in there."
+
     setTimeout(function() {
       document.querySelector('#gone').innerText=longtex
       r.style.setProperty('--teapotHeight', '45vh');
       r.style.setProperty('--MteapotWidth', '60vw');
       r.style.setProperty('--bg', '#15333D');
+      r.style.setProperty('--color', '#05232D');
+      document.querySelector('#tea').style.filter="brightness(50%) hue-rotate(30deg)"
     }, 5000);
     
     setTimeout(function() {
       document.body.style.backgroundImage="url('/assets3/blue.png')";
       document.querySelector('#gone').innerText=longertex
+      r.style.setProperty('--teapotHeight', '30vh');
+      r.style.setProperty('--MteapotWidth', '40vw');
+      document.querySelector('#tea').style.filter="brightness(50%) hue-rotate(60deg)"
+      r.style.setProperty('--color', '#25435D');
+      document.querySelector('#gone').style["-webkit-text-stroke"] = ".05em black"
+      document.querySelector('#fouraig').style["-webkit-text-stroke"] = ".05em black"
     }, 10000);
   </script>
 </body>

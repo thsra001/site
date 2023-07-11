@@ -13,7 +13,7 @@ body{
   margin: 1vh 0 0 0 ;
   
   text-align: center;
-  color: rgb(80, 80, 80)
+  color: #505050
   
 }
 #bodybox{
@@ -23,22 +23,25 @@ body{
   min-height: 50vmin;
   padding-left: 5vw;
   padding-top: 2.5vmin;
+  padding-bottom: 2.5vmin;
 }
 #footer{
   background-color: rgb(80, 80, 80);
   margin: auto;
   max-width: 75vw;
-  height: 5vmin;
+  min-height: 1vmin;
   padding-left: 5vw;
-  padding-top: 2.5vmin;
   margin-top: 1vmin;
-}
+  padding-top: 1.15vmin;
+  padding-bottom: 1.15vmin;
+
 .lin,h3{
-  font-size: 2.7vh;
-  display: inline;
+    font-size: 2.7vmin;
+    display: inline-block;
 }
-p,li{font-size: 2.3vh;}
-h2{font-size: 3.5vh;}
+} 
+p,li{font-size: 2.3vmin;}
+h2{font-size: 3.5vmin;}
 .nosel{
   cursor: pointer;
   -webkit-user-select: none; /* Safari */        
@@ -51,4 +54,15 @@ h2{font-size: 3.5vh;}
   color: rgb(98, 144, 156);
 }
 *:visited{
-  color: rgb(111, 98, 158);}
+  color: rgb(111, 98, 158);
+}
+.blogimg{
+  height:40vmin;
+  width:auto;
+  margin-left: 5vw;
+}
+.imgtex {
+margin-left: 7vw;
+color: #555555;
+font-style: italic;
+}
