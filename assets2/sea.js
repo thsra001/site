@@ -20,9 +20,10 @@ async function run_simulation() {
     60,
     window.innerWidth / window.innerHeight,
     0.1,
-    10000
+    1000
   );
-  camera.position.y = 1.6;
+  let camoff = 1.6
+  camera.position.y = camoff;
  let now,then = 0
   // add random functions
   function randInt(min, max) {
@@ -42,7 +43,7 @@ async function run_simulation() {
   // The renderer: something that draws 3D objects onto the canvas
   const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector("#c"), antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor(0xaaaaaa, 1);
+  renderer.setClearColor(0x222222, 1);
   // add canvas rescaling
   window.addEventListener( 'resize', onWindowResize, false );
 
@@ -52,17 +53,28 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 }
+  //  glb / gltf loader
+  const glbloader = new GLTFLoader();
+  function glbload(path,whendone){
+    glbloader.load( path, function ( gltf ) {
+	    whendone(gltf)
+    }, undefined, function ( error ) {
+	    console.error( error );
+    } );
+  }
   // add sky
-  const skyloader = new THREE.CubeTextureLoader();
-  const skytexture = skyloader.load([
-    '/assets2/sea/sky/px.png',
-    '/assets2/sea/sky/nx.png',
-    '/assets2/sea/sky/py.png',
-    '/assets2/sea/sky/ny.png',
-    '/assets2/sea/sky/pz.png',
-    '/assets2/sea/sky/nz.png',
-  ]);
-  scene.background = skytexture;
+  const skyTex=new THREE.MeshBasicMaterial({
+    color: 0xffffff,map:loadImg("/assets2/sea/sky/sky.png",1,1)
+  })
+  var sky
+  glbload("/assets2/sea/sky/sky.glb",function (gltf) {
+    console.log('loaded sky',gltf)
+    gltf.scene.scale.set(30,30,30)
+    gltf.scene.children[0].renderOrder = -5
+    gltf.scene.children[0].material.depthWrite = false 
+    scene.add(gltf.scene)
+    sky=gltf.scene
+  })
   //add Controls
   let playing=false
   const controls = new PointerLockControls(camera, document.querySelector("#c"));
@@ -173,22 +185,14 @@ function onWindowResize() {
         break;
     }
   }
-  //  glb / gltf loader
-  const glbloader = new GLTFLoader();
-  function glbload(path,whendone){
-    glbloader.load( path, function ( gltf ) {
-	    whendone(gltf)
-    }, undefined, function ( error ) {
-	    console.error( error );
-    } );
-  }
+
   var sitting=false
   //boat and wood texture
   let woodTex=new THREE.MeshStandardMaterial({
-        color: 0xffffff,map:loadImg("/assets2/sea/floor/wood32.jpg",1,1)
+        color: 0xcccccc,map:loadImg("/assets2/sea/floor/wood32.jpg",1,1)
   })
   let sten=new THREE.MeshStandardMaterial({
-        color: 0xffffff,map:loadImg("/assets2/sea/floor/wood32.jpg",1,1),colorWrite:false
+        color: 0xcccccc,map:loadImg("/assets2/sea/floor/wood32.jpg",1,1),colorWrite:false
   })
   
   glbload("/assets2/sea/modals/rowboat.glb",function (gltf) {
@@ -290,7 +294,7 @@ function onWindowResize() {
     // The geometry: the shape & size of the object
     geometry: new THREE.PlaneGeometry(300, 300, 150, 150),
     // The material: the appearance (color, texture) of the object
-    material: new THREE.MeshBasicMaterial({ color: 0xffffff, map: texture})
+    material: new THREE.MeshBasicMaterial({ color: 0xcccccc, map: texture})
   };
   cube.mesh = new THREE.Mesh(cube.geometry, cube.material);
   scene.add(cube.mesh);
@@ -322,7 +326,7 @@ function onWindowResize() {
       geometry: new THREE.BoxGeometry(1, 1, 1),
       // The material: the appearance (color, texture) of the object
       material: new THREE.MeshStandardMaterial({
-        color: 0xffffff, map: texture4,
+        color: 0xcccccc, map: texture4,
       })
     };
     cube2.mesh = new THREE.Mesh(cube2.geometry, cube2.material);
@@ -356,7 +360,7 @@ function onWindowResize() {
       bevelOffset: -1,
       bevelSegments: 2
     });
-    let mat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    let mat = new THREE.MeshStandardMaterial({ color: 0xcccccc });
     let textMesh1 = new THREE.Mesh(geometry, mat);
     textMesh1.scale.set(0.01, 0.01, 0.01)
     textMesh1.geometry.computeBoundingBox()
@@ -480,7 +484,10 @@ function onWindowResize() {
     } else {
       speed = 0.002
     }}
-
+    if (sky){
+    sky.position.copy(camera.position)
+    sky.position.setY(sky.position.y-camoff)
+    }
     // Render the scene and the camera
     renderer.render(scene, camera);
 
